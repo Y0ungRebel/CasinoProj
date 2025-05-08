@@ -10,21 +10,27 @@ namespace CasinoProj
     {
         static void Main(string[] args)
         {
-            Console.Write("Введите количество игроков: ");
-            int countOfPlayers = Convert.ToInt32(Console.ReadLine());
-
-            int[] chips = new int[countOfPlayers];
+            int countOfPlayers = 0;            
             int sumOfChips = 0;
-            for (int i = 0; i < countOfPlayers; i++)
+
+            Console.Write("Введите исходные данные: ");
+            string input = Console.ReadLine();
+
+            input = input.Replace(" ", "");
+            string[] data = input.Split(',');
+
+            int[] chips = new int[data.Length];
+            for (int i = 0; i < data.Length; i++)
             {
-                Console.Write($"Введите количество фишек у {i + 1} игрока: ");
-                chips[i] = Convert.ToInt32(Console.ReadLine());
-                sumOfChips+=chips[i];
+                chips[i] = Convert.ToInt32(data[i]);
+                sumOfChips += chips[i];
+                countOfPlayers++;
             }
 
             int chipsOfPlayer = sumOfChips / countOfPlayers;
             Console.WriteLine($"Всего {countOfPlayers} игроков. У каждого должно оказаться по {chipsOfPlayer} фишек.");
 
+            
 
             int countOfSteps = 0;
 
